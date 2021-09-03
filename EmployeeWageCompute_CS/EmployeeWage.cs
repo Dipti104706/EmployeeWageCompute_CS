@@ -6,14 +6,13 @@ namespace EmployeeWageCompute_CS
 /// </summary>
     class EmployeeWageCompute
     {
+        public const int IS_FULL_TIME = 1;
+        public const int IS_PART_TIME = 2;
+        public const int EMP_RATE_PER_HOUR = 20;
         static void Main(string[] args)
         {
-            //UC3 Daily Employee Wage Calculation with part-time
+            //UC4 Daily Employee Wage Calculation using switch
 
-            //Constants
-            int IS_FULL_TIME = 1;
-            int IS_PART_TIME = 2;
-            int EMP_RATE_PER_HOUR = 20;
             //local variables
             int empHrs = 0;
             int empWage = 0;
@@ -25,18 +24,18 @@ namespace EmployeeWageCompute_CS
             int empCheck = random.Next(0, 3);
             Console.WriteLine("Checking employee status" + empCheck);
 
-            //Selection statement
-            if (empCheck == IS_FULL_TIME)
+            //Selection Switch statement
+            switch (empCheck)
             {
-                empHrs = 8;
-            }
-            else if (empCheck == IS_PART_TIME)
-            {
-                empHrs = 4;
-            }
-            else
-            {
-                empHrs = 0;
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 4;
+                    break;
             }
 
             empWage = EMP_RATE_PER_HOUR * empHrs;
