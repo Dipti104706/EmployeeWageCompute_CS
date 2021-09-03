@@ -10,17 +10,20 @@ namespace EmployeeWageCompute_CS
         public const int IS_PART_TIME = 2;
         public const int EMP_RATE_PER_HOUR = 20;
         public const int NUM_OF_WORKING_DAYS = 20;
+        public const int MAX_WORKING_HRS = 100;
         static void Main(string[] args)
         {
             //UC5 Daily Employee Wage Calculation for a month
 
             //local variables
             int empHrs = 0;
-            int empWage = 0;
             int totalEmpWage = 0;
+            int totalEmpHrs = 0;
+            int totalWorkingDays = 1;
 
-            for (int day = 1; day <= NUM_OF_WORKING_DAYS; day++)
+            while (totalEmpHrs <= MAX_WORKING_HRS && totalWorkingDays <=NUM_OF_WORKING_DAYS)
             {
+                totalWorkingDays++;
                 //Predefined random class for generating random values
                 Random random = new Random();
 
@@ -41,9 +44,10 @@ namespace EmployeeWageCompute_CS
                         break;
                 }
 
-                empWage = EMP_RATE_PER_HOUR * empHrs;
-                totalEmpWage += empWage;
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Days:" + totalWorkingDays + "Emp Hrs: " + empHrs);
             }
+            totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
             Console.WriteLine("Total employee wage:" +totalEmpWage);
             Console.ReadLine();
         }
