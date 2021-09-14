@@ -11,15 +11,15 @@ namespace EmployeeWageCompute_CS
         public const int IS_PART_TIME = 2;
 
         //Creating method for checking employee attendance
-        public static int empAttendance()
+        Random random = new Random();
+        public int empAttendance()
         {
-            Random random = new Random();
             int empAttendance = random.Next(0, 3);
             return empAttendance;
         }
 
         //creating method to calculate employee wage
-        public static void empWage(string company, int empRatePerHr,int numOfWorkingDays, int maxWorkingHrs)
+        public void empWage(string company, int empRatePerHr,int numOfWorkingDays, int maxWorkingHrs)
         {
             //local variables
             int empHrs = 0;
@@ -41,7 +41,7 @@ namespace EmployeeWageCompute_CS
                         empHrs = 4;
                         break;
                     default:
-                        empHrs = 4;
+                        empHrs = 0;
                         break;
                 }
 
@@ -54,8 +54,9 @@ namespace EmployeeWageCompute_CS
 
         static void Main(string[] args)
         {
-            empWage("cognizant",40,20,80);
-            empWage("Accenture", 38, 20, 85);
+            EmployeeWageCompute emp1 = new EmployeeWageCompute();
+            emp1.empWage("cognizant",40,20,80);
+            emp1.empWage("Accenture", 38, 20, 85);
             Console.ReadLine();   
         }
     }
