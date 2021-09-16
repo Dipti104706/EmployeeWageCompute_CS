@@ -6,9 +6,23 @@ namespace EmployeeWageCompute_CS
 /// </summary>
     class EmployeeWageCompute
     {
-        //UC8 to multiple company Employee Wage Calculation for a month
+        //UC9 to ability to save totalwage for each company
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
+
+        string company;
+        int empRatePerHr;
+        int numOfWorkingDays;
+        int maxWorkingHrs;
+        int totalEmpWage;
+
+        public EmployeeWageCompute(string company, int empRatePerHr, int numOfWorkingDays, int maxWorkingHrs)
+        {
+            this.company = company;
+            this.empRatePerHr = empRatePerHr;
+            this.numOfWorkingDays = numOfWorkingDays;
+            this.maxWorkingHrs = maxWorkingHrs;
+        }
 
         //Creating method for checking employee attendance
         Random random = new Random();
@@ -19,13 +33,12 @@ namespace EmployeeWageCompute_CS
         }
 
         //creating method to calculate employee wage
-        public void empWage(string company, int empRatePerHr,int numOfWorkingDays, int maxWorkingHrs)
+        public void empWage()
         {
             //local variables
             int empHrs = 0;
-            int totalEmpWage = 0;
             int totalEmpHrs = 0;
-            int totalWorkingDays = 1;
+            int totalWorkingDays = 0;
             
             while (totalEmpHrs <= maxWorkingHrs && totalWorkingDays <= numOfWorkingDays)
             {
@@ -46,17 +59,24 @@ namespace EmployeeWageCompute_CS
                 }
 
                 totalEmpHrs += empHrs;
-                Console.WriteLine("Days:" + totalWorkingDays + "Emp Hrs: " + empHrs);
+                //Console.WriteLine("Days:" + totalWorkingDays + "Emp Hrs: " + empHrs);
             }
-            totalEmpWage = totalEmpHrs * empRatePerHr;
+            totalEmpWage = totalEmpHrs * this.empRatePerHr;
             Console.WriteLine("Total employee wage for {0} company is {1}:" , company, + totalEmpWage);
         }
 
+        //public override string ToString()
+        //{
+        //    return "Total employee wage for company" + this.company + "is:" + this.totalEmpWage;
+        //}
         static void Main(string[] args)
         {
-            EmployeeWageCompute emp1 = new EmployeeWageCompute();
-            emp1.empWage("cognizant",40,20,80);
-            emp1.empWage("Accenture", 38, 20, 85);
+            EmployeeWageCompute Cognizant = new EmployeeWageCompute("Cognizant", 40, 20, 80);
+            Cognizant.empWage();
+            //Console.WriteLine(Cognizant.ToString());
+            EmployeeWageCompute Accenture = new EmployeeWageCompute("Accenture", 55, 20, 80);
+            Accenture.empWage();
+            //Console.WriteLine(Accenture.ToString());
             Console.ReadLine();   
         }
     }
